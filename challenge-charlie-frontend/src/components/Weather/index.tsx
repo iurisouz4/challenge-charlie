@@ -2,6 +2,8 @@ import React from "react";
 import Input from "../Input";
 import getWeather from "../../services/weather";
 import WeatherForecast from "../WeatherForecast";
+import WeatherCurrent from "../WeatherCurrent";
+import { Box } from "@material-ui/core";
 
 export default function Weather() {
     async function handleWeather(location: string) {
@@ -14,8 +16,15 @@ export default function Weather() {
     function handleClickTemp() {}
 
     return (
-        <>
+        <Box display="flex" flexDirection="column" height="100%">
             <Input onWeatherChange={handleWeather} />
+            <WeatherCurrent
+                dayText={"Amanhã"}
+                temperature={"25º"}
+                rgb={"255,255,0"}
+                alpha="0.6"
+                onClickTemp={handleClickTemp}
+            />
             <WeatherForecast
                 dayText={"Amanhã"}
                 temperature={"25º"}
@@ -30,6 +39,6 @@ export default function Weather() {
                 alpha="0.5"
                 onClickTemp={handleClickTemp}
             />
-        </>
+        </Box>
     );
 }
