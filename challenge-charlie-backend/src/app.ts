@@ -1,15 +1,11 @@
 import express from "express";
+import images from "./routes/imageoftheday";
+import weather from "./routes/weather";
 
 const app = express();
 
 app.use(express.json());
-
-app.get("/weather", (req, res) => {
-    res.status(200).send({ message: "OK" });
-});
-
-app.get("/imageoftheday", (req, res) => {
-    res.status(200).send({ message: "OK" });
-});
+app.use(images);
+app.use(weather);
 
 app.listen(3333);
