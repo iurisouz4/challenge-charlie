@@ -1,10 +1,27 @@
-import React from "react";
+import React, { useEffect, useState, ChangeEvent } from "react";
 import TextField from "@material-ui/core/TextField";
 import ExploreOutlinedIcon from "@material-ui/icons/ExploreOutlined";
 import "./styles.scss";
 import { Box } from "@material-ui/core";
+import getLocationName from "../../services/opencage";
 
 export default function Input() {
+    const [locationName, setLocationName] = useState("");
+
+    // get actual coordinates from client
+    // then do reverse geocode with open cage
+    // to get location name
+    useEffect(() => {
+        navigator.geolocation.getCurrentPosition(async (position) => {
+            const { latitude, longitude } = position.coords;
+            setLocationName(await getLocationName([latitude, longitude]));
+        });
+    }, []);
+
+    function handleUserInput(event: ChangeEvent) {
+        setLocationName((event.target as HTMLInputElement).value);
+    }
+
     return (
         <Box
             display="flex"
@@ -19,7 +36,12 @@ export default function Input() {
                 />
             </Box>
             <Box flexGrow={1}>
-                <TextField id="input-local" fullWidth />
+                <TextField
+                    id="input-local"
+                    fullWidth
+                    value={locationName}
+                    onChange={handleUserInput}
+                />
             </Box>
         </Box>
     );
