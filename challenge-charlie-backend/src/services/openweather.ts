@@ -1,6 +1,7 @@
 import fetch from "node-fetch";
-import { WeatherCurrent } from "../interfaces/weathercurrent";
-import { WeatherForecast } from "../interfaces/weatherforecast";
+import IWeather from "../interfaces/weather";
+import WeatherCurrent from "../interfaces/weathercurrent";
+import WeatherForecast, { List, City } from "../interfaces/weatherforecast";
 import getWindDirection from "../helpers/winddirection";
 import getTemperatures from "../helpers/temperature";
 
@@ -23,7 +24,7 @@ export async function getCurrent(location: string) {
     const wind = { ...json.wind, dir: getWindDirection(json.wind.deg) };
     const temp = getTemperatures(main.temp);
 
-    const response = {
+    const response: IWeather = {
         name,
         country: sys.country,
         icon: weather[0].icon,
@@ -48,5 +49,30 @@ export async function getForecast(location: string) {
         (res) => (res.json() as unknown) as WeatherForecast
     );
 
-    return json;
+    const tomorrow: IWeather = getWeather(json.list[7], json.city);
+    const aftertomorrow: IWeather = getWeather(json.list[15], json.city);
+
+    return [tomorrow, aftertomorrow];
+}
+
+function getWeather(forecast: List, city: City) {
+    const { name, country } = city;
+    const { icon, description } = forecast.weather[0];
+    const temp = getTemperatures(forecast.main.temp);
+    const { pressure, humidity } = forecast.main;
+    const wind = {
+        ...forecast.wind,
+        dir: getWindDirection(forecast.wind.deg),
+    };
+
+    return {
+        name,
+        country,
+        icon,
+        description,
+        temp,
+        pressure,
+        humidity,
+        wind,
+    };
 }

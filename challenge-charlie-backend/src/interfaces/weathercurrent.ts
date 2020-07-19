@@ -36,7 +36,7 @@ export interface Sys {
     sunset: number;
 }
 
-export interface WeatherCurrent {
+export default interface WeatherCurrent {
     coord: Coord;
     weather: Weather[];
     base: string;

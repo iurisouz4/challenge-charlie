@@ -8,13 +8,13 @@ router.get("/weather", async (req, res) => {
             res.status(400).send({ message: "Please, inform location name." });
         }
         const locationName = req.query.location;
-        //const forecast = await getForecast(locationName as string, "metric");
+        const forecast = await getForecast(locationName as string);
         const current = await getCurrent(locationName as string);
-        //const tomorrow = forecast[0];
-        //const afterTomorrow = forecast[1];
+        const tomorrow = forecast[0];
+        const afterTomorrow = forecast[1];
 
         const weather = {
-            data: { current, tomorrow: "", afterTomorrow: "" },
+            data: { current, tomorrow, afterTomorrow },
             message: `Weather from '${locationName}' retrieved sucessfully.`,
         };
         res.send(weather);

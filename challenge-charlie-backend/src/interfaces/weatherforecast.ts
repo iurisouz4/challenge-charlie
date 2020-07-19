@@ -58,7 +58,7 @@ export interface City {
     sunset: number;
 }
 
-export interface WeatherForecast {
+export default interface WeatherForecast {
     cod: string;
     message: number;
     cnt: number;
