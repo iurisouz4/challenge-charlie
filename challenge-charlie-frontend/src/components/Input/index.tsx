@@ -5,7 +5,11 @@ import "./styles.scss";
 import { Box } from "@material-ui/core";
 import getLocationName from "../../services/opencage";
 
-export default function Input() {
+interface Props {
+    onWeatherChange: (location: string) => void;
+}
+
+const Input: React.FC<Props> = ({ onWeatherChange }) => {
     const [locationName, setLocationName] = useState("");
 
     // get actual coordinates from client
@@ -17,6 +21,11 @@ export default function Input() {
             setLocationName(await getLocationName([latitude, longitude]));
         });
     }, []);
+
+    // get weather in the selected location
+    useEffect(() => {
+        onWeatherChange(locationName);
+    }, [locationName, onWeatherChange]);
 
     function handleUserInput(event: ChangeEvent) {
         setLocationName((event.target as HTMLInputElement).value);
@@ -45,4 +54,6 @@ export default function Input() {
             </Box>
         </Box>
     );
-}
+};
+
+export default Input;
