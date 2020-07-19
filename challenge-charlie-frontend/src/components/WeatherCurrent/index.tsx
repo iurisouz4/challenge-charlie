@@ -1,6 +1,7 @@
 import React from "react";
 import "./styles.scss";
-import { Box } from "@material-ui/core";
+import { Box, Grid } from "@material-ui/core";
+import iconImg from "../../assets/icons/2.svg";
 
 interface Props {
     dayText: string;
@@ -35,7 +36,46 @@ const WeatherCurrent: React.FC<Props> = ({
             height="100%"
             alignContent="center"
             style={{ background: `rgba(${rgb},${alpha})` }}
-        ></Box>
+        >
+            <Grid
+                id="current-grid"
+                container
+                direction="row"
+                spacing={2}
+                alignItems="flex-end" justify="flex-end"
+            >
+                <Grid item>
+                    <img src={iconImg} alt="weather-icon" />
+                </Grid>
+                <Grid direction="column" alignContent="flex-end">
+                    <Grid container alignItems="flex-end" justify="flex-end">
+                        <span>{dayText}</span>
+                    </Grid>
+                    <Grid container alignItems="flex-end" justify="flex-end">
+                        <span id="temp_text" onClick={onClickTemp}>
+                            {temperature}
+                        </span>
+                    </Grid>
+                    <Grid
+                        container
+                        alignItems="flex-end"
+                        justify="flex-end"
+                        id="desc-text"
+                    >
+                        <span>{description}</span>
+                    </Grid>
+                    <Grid container alignItems="flex-end" justify="flex-end">
+                        <span>{wind}</span>
+                    </Grid>
+                    <Grid container alignItems="flex-end" justify="flex-end">
+                        <span>{humidity}</span>
+                    </Grid>
+                    <Grid container alignItems="flex-end" justify="flex-end">
+                        <span>{pressure}</span>
+                    </Grid>
+                </Grid>
+            </Grid>
+        </Box>
     );
 };
 

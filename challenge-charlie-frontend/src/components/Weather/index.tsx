@@ -19,8 +19,12 @@ export default function Weather() {
         <Box display="flex" flexDirection="column" height="100%">
             <Input onWeatherChange={handleWeather} />
             <WeatherCurrent
-                dayText={"Amanhã"}
+                dayText={"Hoje"}
                 temperature={"25º"}
+                description={"Ensolarado"}
+                wind={"Vento: NO 6.4km/h"}
+                humidity={"Umidade: 78%"}
+                pressure={"Pressão: 1003hPA"}
                 rgb={"255,255,0"}
                 alpha="0.6"
                 onClickTemp={handleClickTemp}
