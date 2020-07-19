@@ -1,12 +1,9 @@
 import React from "react";
+import Routes from "./routes";
 import "./App.css";
 
 function App() {
-    return (
-        <div className="App">
-            <h1>Initialized</h1>
-        </div>
-    );
+    return <Routes />;
 }
 
 export default App;
