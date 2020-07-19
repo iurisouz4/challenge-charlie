@@ -24,7 +24,7 @@ export async function getCurrent(location: string) {
     const wind = { ...json.wind, dir: getWindDirection(json.wind.deg) };
     const temp = getTemperatures(main.temp);
 
-    const response: IWeather = {
+    const current: IWeather = {
         name,
         country: sys.country,
         icon: weather[0].icon,
@@ -35,7 +35,7 @@ export async function getCurrent(location: string) {
         wind,
     };
 
-    return response;
+    return current;
 }
 
 export async function getForecast(location: string) {
@@ -74,5 +74,6 @@ function getWeather(forecast: List, city: City) {
         pressure,
         humidity,
         wind,
+        date: forecast.dt_txt,
     };
 }
