@@ -1,0 +1,17 @@
+#input-local {
+    color: rgb(71, 71, 71);
+    font-size: 2.2em;
+}
+
+#input-box {
+    color: rgb(71, 71, 71);
+    margin-left: 20%;
+    margin-right: 20%;
+}
+
+@media screen and (max-width: 1000px) {
+    #input-box {
+        margin-left: unset;
+        margin-right: unset;
+    }
+}
