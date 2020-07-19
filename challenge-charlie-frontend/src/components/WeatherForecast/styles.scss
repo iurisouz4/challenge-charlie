@@ -1,0 +1,35 @@
+#forecast-box {
+    color: rgb(255, 255, 255);
+    margin-left: 20%;
+    margin-right: 20%;
+    height: 10%;
+    font-size: 2.4em;
+    font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+        "Lucida Sans", Arial, sans-serif;
+    flex-wrap: wrap;
+}
+
+#temp_text {
+    font-size: 1.5em;
+    cursor: pointer;
+}
+
+#forecast-grid {
+    margin-right: 2em;
+}
+
+@media screen and (max-width: 1000px) {
+    #forecast-box {
+        margin-left: unset;
+        margin-right: unset;
+        font-size: 1.8em;
+    }
+
+    #forecast-grid {
+        margin-right: 1em;
+    }
+
+    #temp_text {
+        cursor: pointer;
+    }
+}
