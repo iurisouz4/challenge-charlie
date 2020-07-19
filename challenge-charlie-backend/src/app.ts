@@ -1,5 +1,5 @@
 import express from "express";
-import images from "./routes/imageoftheday";
+import images from "./routes/images";
 import weather from "./routes/weather";
 
 const app = express();
