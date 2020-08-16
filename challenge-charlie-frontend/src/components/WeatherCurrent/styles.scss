@@ -7,10 +7,7 @@
     font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
         "Lucida Sans", Arial, sans-serif;
     flex-wrap: wrap;
-}
-
-#current-grid {
-    margin-right: 2em;
+    align-content: center;
 }
 
 #desc-text {
@@ -19,7 +16,23 @@
     margin-top: 1em;
 }
 
-@media screen and (max-width: 1000px) {
+#current-grid {
+    margin-top: -10em;
+    margin-bottom: 2em;
+    margin-right: 2em;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
+
+#weather-icon {
+    height: auto;
+    width: 100%;
+    max-width: 512px;
+    margin-top: 1em;
+}
+
+@media screen and (max-width: 1260px) {
     #current-box {
         margin-left: unset;
         margin-right: unset;
@@ -34,5 +47,13 @@
 
     #current-grid {
         margin-right: 1em;
+        margin-top: 0em;
+        margin-bottom: 2em;
+    }
+
+    #weather-icon {
+        height: auto;
+        width: 100%;
+        max-width: 256px;
     }
 }
