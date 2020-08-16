@@ -2,9 +2,20 @@ import express from "express";
 import cors from "cors";
 import images from "./routes/images";
 import weather from "./routes/weather";
+import dotenv from "dotenv";
+
+if (
+    dotenv.config({
+        path: `env/${process.env.NODE_ENV}.env`,
+    }).error
+) {
+    throw new Error(
+        `Verify that ${process.env.NODE_ENV}.env file exists in the env folder`
+    );
+}
 
 const app = express();
-const port = 3333;
+const port = process.env.PORT;
 
 app.use(cors());
 app.use(express.json());
